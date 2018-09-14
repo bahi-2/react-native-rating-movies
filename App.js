@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { ProgressBarAndroid,View, Image  } from 'react-native';
+import { ProgressBarAndroid,View, Image, Linking } from 'react-native';
 
 import { Container, Header, Content, 
          Card, CardItem, Text, Body, 
@@ -21,6 +21,8 @@ require('core-js/fn/symbol/iterator');
 require('core-js/fn/map');
 require('core-js/fn/set');
 require('core-js/fn/array/find');
+
+const CINEMA_BASE_URL = "https://www.blitz-cinestar.hr/";
 
 export default class App extends React.Component {
 
@@ -66,8 +68,11 @@ export default class App extends React.Component {
           $(this).find('td > a:nth-child(1)')
                  .each((index, item) => movieInfo.push(item.firstChild.data));
 
-          // nađe sliku povezanu sa tim filmom skakajući po DOM-u
-          let img = $(this).parent().parent().prev().find('img').attr('src');
+          // nađe sliku povezanu sa tim filmom skačući po DOM-u
+          let cover = $(this).parent().parent().prev();
+          let img = cover.find('img').attr('src');
+          // iz slike također uzmemo href atribut
+          let cinestarLink = cover.find('a').attr('href');
 
           // lista rasporeda prikaza
           let scheduleList = $(this).parent().parent().parent().parent().parent().next();
@@ -91,7 +96,8 @@ export default class App extends React.Component {
             // actors: movieInfo[],
             // country: movieInfo[],
             imdbRating: '-',
-            schedule: schedule
+            schedule: schedule,
+            cinestarLink: cinestarLink
           };
 
           // add the rating
@@ -174,12 +180,18 @@ export default class App extends React.Component {
                         <Left>
                           <Thumbnail source={{uri: item.image}} />
                           <Body>
-                            <Text> {item.titleHR} </Text>
+                            <Text 
+                              onPress={
+                                () => Linking.openURL(CINEMA_BASE_URL+item.cinestarLink)
+                              }
+                              style={{color: 'blue'}}> {item.titleHR}
+                            </Text>
                             <Text note> {item.titleEN} </Text>
                             <Text note> Žanr: {item.genre} </Text>
                           </Body>
                         </Left>
-                        <Text>IMDB: {item.imdbRating}</Text>
+                        <Icon type="FontAwesome" name="home" />
+                        <Text>{item.imdbRating}</Text>
                       </CardItem>
                       <ScheduleCardItem item={item} />
                     </Content>
