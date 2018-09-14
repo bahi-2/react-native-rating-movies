@@ -12,7 +12,7 @@ export class ScheduleCardItem extends React.Component {
         <CardItem style={{backgroundColor: '#d8e7ff', paddingTop: 0}}>
           {this.props.item.schedule.map((time, i) =>
             {
-              if (i>4) return(
+              if (i>=4) return(
                 <Button key={i} onPress={() => {Linking.openURL(time.link)}} small bordered style={{marginRight: 5}}>
                   <Text>{time.time}</Text>
                 </Button>

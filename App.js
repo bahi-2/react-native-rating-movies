@@ -5,10 +5,9 @@ import { Container, Header, Content,
          Card, CardItem, Text, Body, 
          Thumbnail, Left, Title, 
          Spinner, Button, Icon } from "native-base";
-// import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import cheerio from 'react-native-cheerio';
 
-import { getIMDBRating } from 'imdbcinestar/src/ratings.js';
+import { getIMDBId } from 'imdbcinestar/src/ratings.js';
 import {cinemaLinks} from 'imdbcinestar/src/config/storage.js'
 import { ScheduleCardItem } from 'imdbcinestar/src/components/ScheduleCardItem.js';
 import { CinemaPicker, DayPicker } from 'imdbcinestar/src/components/CustomPickers.js';
@@ -24,6 +23,7 @@ require('core-js/fn/set');
 require('core-js/fn/array/find');
 
 const CINEMA_BASE_URL = "https://www.blitz-cinestar.hr/";
+const IMDB_BASE_URL = "https://www.imdb.com/title/";
 
 export default class App extends React.Component {
 
@@ -42,7 +42,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     // MAKNI OVO KAD POPRAVIŠ RATINGE
-    // setTimeout(() => this.setState(this.state),2000);
+    // setTimeout(() => this.setState(this.state),4000);
         
     console.log('searching for movies at: ' + this.state.cinemaURL+"/"+this.state.date)
     return fetch(this.state.cinemaURL+"/"+this.state.date)
@@ -62,7 +62,7 @@ export default class App extends React.Component {
 
         var movieItems = [];  // završna lista koja će se prikazivati na ekranu
         
-        tbodies.each(function(index,tbody) {
+        tbodies.each(async function(index,tbody) {
           // array informacija o jednom filmu
           let movieInfo = [];
           // puni movieInfo sa svim dostupnim field-ovima
@@ -78,13 +78,20 @@ export default class App extends React.Component {
           // lista rasporeda prikaza
           let scheduleList = $(this).parent().parent().parent().parent().parent().next();
           schedule = [];
-          scheduleList.find('div.vrijeme_sub > div.termin > a.tips')
+          console.log(scheduleList)
+          scheduleList
+                  .find('div.vrijeme_sub > div.termin > a.tips')
                   .each(function (index, tag) {
                     schedule.push({
                       time: $(this).text(),
                       link: $(this).attr('href')
                     })
                   });
+                  consol
+
+          const ID = await getIMDBId(movieInfo[1]);
+          let imdbLink = IMDB_BASE_URL + ID;
+          if (!ID) imdbLink = undefined;
 
           // extract-amo varijable iz array-a informacija
           let movieItem = {
@@ -98,12 +105,14 @@ export default class App extends React.Component {
             // country: movieInfo[],
             imdbRating: '-',
             schedule: schedule,
-            cinestarLink: cinestarLink
+            cinestarLink: cinestarLink,
+            // imdbLink: imdbLink
           };
 
           // add the rating
           // getIMDBRating(movieItem.titleEN);
 
+            console.log(movieItem)
           // only display movies that have at least one play
           if (schedule.length !== 0){
             movieItems.push(movieItem);
@@ -111,10 +120,13 @@ export default class App extends React.Component {
         })
 
         this.setState({
-          isLoading: false,
           dataSource: movieItems,
         });
+        console.log(movieItems)
 
+      })
+      .then(() => {
+        this.setState({isLoading: false});
       })
       .catch((error) => {
         console.error("Error while fetching resources from cinestar: " + error);
@@ -123,12 +135,15 @@ export default class App extends React.Component {
   
   onCinemaChange(value: string) {
     this.setState({
-      ...this.state,
-      selectedCinema: value,
-      cinemaURL: cinemaLinks[value],
-      isLoading: true
-    });
-    this.componentDidMount()
+        ...this.state,
+        selectedCinema: value,
+        cinemaURL: cinemaLinks[value],
+        isLoading: true
+      },
+      function () {
+        this.componentDidMount()
+      }
+    );
   }
 
   onDayChange(value: string) {
@@ -145,7 +160,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    // const IMDBicon = (<FontAwesome5 name={'imdb'} />);
 
     if(this.state.isLoading){
       // if(true){
