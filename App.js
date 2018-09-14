@@ -5,6 +5,7 @@ import { Container, Header, Content,
          Card, CardItem, Text, Body, 
          Thumbnail, Left, Title, 
          Spinner, Button, Icon } from "native-base";
+// import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import cheerio from 'react-native-cheerio';
 
 import { getIMDBRating } from 'imdbcinestar/src/ratings.js';
@@ -144,6 +145,7 @@ export default class App extends React.Component {
   }
 
   render() {
+    // const IMDBicon = (<FontAwesome5 name={'imdb'} />);
 
     if(this.state.isLoading){
       // if(true){
@@ -190,7 +192,7 @@ export default class App extends React.Component {
                             <Text note> Žanr: {item.genre} </Text>
                           </Body>
                         </Left>
-                        <Icon type="FontAwesome" name="home" />
+                          <Icon type="FontAwesome" name="imdb" />
                         <Text>{item.imdbRating}</Text>
                       </CardItem>
                       <ScheduleCardItem item={item} />
