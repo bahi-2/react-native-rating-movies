@@ -1,4 +1,4 @@
-package com.imdbcinestar;
+package com.kinoslav;
 
 import android.app.Application;
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { ProgressBarAndroid,View, Image, Linking } from 'react-native';
+import { ProgressBarAndroid,View, Image, Linking, AsyncStorage } from 'react-native';
 
 import { Container, Header, Content, 
          Card, CardItem, Text, Body, 
@@ -7,11 +7,12 @@ import { Container, Header, Content,
          Spinner, Button, Icon } from "native-base";
 import cheerio from 'react-native-cheerio';
 
-import { getIMDBId } from 'imdbcinestar/src/ratings.js';
-import {cinemaLinks} from 'imdbcinestar/src/config/storage.js'
-import { ScheduleCardItem } from 'imdbcinestar/src/components/ScheduleCardItem.js';
-import { CinemaPicker, DayPicker } from 'imdbcinestar/src/components/CustomPickers.js';
-import { getCurrentDate, getDateForDay } from 'imdbcinestar/src/components/helpers.js';
+import { getIMDBId, getIMDBRating } from 'Kinoslav/src/ratings.js';
+import { cinemaLinks } from 'Kinoslav/src/config/storage.js'
+import { ScheduleCardItem } from 'Kinoslav/src/components/ScheduleCardItem.js';
+import { CinemaPicker, DayPicker } from 'Kinoslav/src/components/CustomPickers.js';
+import { getCurrentDate, getDateForDay } from 'Kinoslav/src/components/helpers.js';
+// import { cachedRatings } from 'Kinoslav/src/storage/caching.js'
 
 // symbol polyfills
 global.Symbol = require('core-js/es6/symbol');
@@ -25,7 +26,7 @@ require('core-js/fn/array/find');
 const CINEMA_BASE_URL = "https://www.blitz-cinestar.hr/";
 const IMDB_BASE_URL = "https://www.imdb.com/title/";
 
-export default class App extends React.Component {
+export default class App extends Component {
 
   constructor(props){
     super(props);
@@ -42,8 +43,10 @@ export default class App extends React.Component {
 
   componentDidMount() {
     // MAKNI OVO KAD POPRAVIŠ RATINGE
-    // setTimeout(() => this.setState(this.state),4000);
-        
+    setTimeout(()=>this.setState(this.state), 4000);
+    setInterval(()=>this.setState(this.state), 10000); // za svaki slučaj
+    // setInterval(() => {this.setState(this.state);console.log('reloading')}, 2000);
+
     console.log('searching for movies at: ' + this.state.cinemaURL+"/"+this.state.date)
     return fetch(this.state.cinemaURL+"/"+this.state.date)
       .then((response) => response.text())
@@ -77,21 +80,15 @@ export default class App extends React.Component {
 
           // lista rasporeda prikaza
           let scheduleList = $(this).parent().parent().parent().parent().parent().next();
-          schedule = [];
-          console.log(scheduleList)
+          var schedule = [];
           scheduleList
-                  .find('div.vrijeme_sub > div.termin > a.tips')
-                  .each(function (index, tag) {
+                  .find('div.scheduleItem > div.vrijeme_sub > div.termin > a.tips')
+                  .each(async function (index, tag) {
                     schedule.push({
                       time: $(this).text(),
                       link: $(this).attr('href')
                     })
                   });
-                  consol
-
-          const ID = await getIMDBId(movieInfo[1]);
-          let imdbLink = IMDB_BASE_URL + ID;
-          if (!ID) imdbLink = undefined;
 
           // extract-amo varijable iz array-a informacija
           let movieItem = {
@@ -108,11 +105,34 @@ export default class App extends React.Component {
             cinestarLink: cinestarLink,
             // imdbLink: imdbLink
           };
+          // const ID = getIMDBId(movieItem.titleEN);
+          // let imdbLink = IMDB_BASE_URL + ID;
+          // if (!ID) imdbLink = undefined;
+
+          getIMDBId(movieItem.titleEN).then(function(id){
+            if (!id) return;
+            let imdbLink = IMDB_BASE_URL + id;
+            movieItem.imdbLink=imdbLink;
+
+            AsyncStorage.getItem(id)
+                .then(cachedRating => {
+                    console.log(cachedRating);
+
+                    if (cachedRating) {
+                      movieItem.imdbRating = cachedRating;
+                      return;
+                    }
+                    getIMDBRating(imdbLink)
+                      .then(rating => {
+                        movieItem.imdbRating = rating;
+                        AsyncStorage.setItem(id, rating, console.log);
+                    });
+                });
+          }).catch(console.log);
 
           // add the rating
-          // getIMDBRating(movieItem.titleEN);
+          // getIMDBRatingAPI(movieItem.titleEN);
 
-            console.log(movieItem)
           // only display movies that have at least one play
           if (schedule.length !== 0){
             movieItems.push(movieItem);
@@ -120,9 +140,9 @@ export default class App extends React.Component {
         })
 
         this.setState({
+          ...this.state,
           dataSource: movieItems,
         });
-        console.log(movieItems)
 
       })
       .then(() => {
@@ -159,13 +179,47 @@ export default class App extends React.Component {
     });
   }
 
+  renderCard() {
+    return(
+      <Card dataArray={this.state.dataSource}
+            renderRow=
+              { (item) => this.renderCardRow(item) } 
+      />
+    )
+  }
+
+  renderCardRow(item) {
+    return(
+      <Content>
+        <CardItem bordered style={{backgroundColor: '#e5efff'}}>
+          <Left>
+            <Thumbnail source={{uri: item.image}} />
+            <Body>
+              <Text 
+                onPress={
+                  () => Linking.openURL(CINEMA_BASE_URL+item.cinestarLink)
+                }
+                style={{color: 'blue'}}> {item.titleHR}
+              </Text>
+              <Text note> {item.titleEN} </Text>
+              <Text note> Žanr: {item.genre} </Text>
+            </Body>
+          </Left>
+            <Icon type="FontAwesome" name="imdb" />
+          <Text>{item.imdbRating}</Text>
+        </CardItem>
+        <ScheduleCardItem item={item} />
+      </Content>
+    )
+  }
+
   render() {
 
     if(this.state.isLoading){
       // if(true){
       return(
         <View style={{flex: 1}}>
-          <Image style={{flex:1, resizeMode: 'stretch', width: null, height: null}} source = {require('imdbcinestar/src/assets/splash.jpg')} />
+          <Image style={{flex:1, resizeMode: 'stretch', width: null, height: null}} source = {require('Kinoslav/src/assets/splash.jpg')} />
           <ProgressBarAndroid styleAttr='Horizontal' color="#2196F3" />
         </View>
       )
@@ -187,31 +241,9 @@ export default class App extends React.Component {
           <DayPicker 
             selectedValue={this.state.day}
             onValueChange={this.onDayChange.bind(this)} />
+          
+          {this.renderCard()}
 
-          <Card dataArray={this.state.dataSource}
-                renderRow=
-                  { (item) => 
-                    <Content>
-                      <CardItem bordered style={{backgroundColor: '#e5efff'}}>
-                        <Left>
-                          <Thumbnail source={{uri: item.image}} />
-                          <Body>
-                            <Text 
-                              onPress={
-                                () => Linking.openURL(CINEMA_BASE_URL+item.cinestarLink)
-                              }
-                              style={{color: 'blue'}}> {item.titleHR}
-                            </Text>
-                            <Text note> {item.titleEN} </Text>
-                            <Text note> Žanr: {item.genre} </Text>
-                          </Body>
-                        </Left>
-                          <Icon type="FontAwesome" name="imdb" />
-                        <Text>{item.imdbRating}</Text>
-                      </CardItem>
-                      <ScheduleCardItem item={item} />
-                    </Content>
-                  } />
         </Content>
       </Container>
     );

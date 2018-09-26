@@ -1,5 +1,5 @@
 {
-  "name": "imdbcinestar",
+  "name": "Kinoslav",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
     "native-base": "^2.8.0",
     "react": "^16.5.0",
     "react-native": "0.57.0",
+    "react-native-cache": "^1.1.1",
     "react-native-cheerio": "^1.0.0-rc.4"
   },
   "devDependencies": {
