@@ -1,4 +1,4 @@
-Pravila o privatnosti za aplikaciju Kinoslav
+Pravila privatnosti za aplikaciju Kinoslav
 
 Aplikacija Kinoslav koristi STORAGE svojstvo iliti unutarnju pohranu telefona za pohranu podataka i čitanje istih, kako bi ubrzala prikaz na ekranu nakon prvog korištenja. 
 Aplikacija ni u kojem scenariju ne čita/piše podatke izvan svoje domene, niti ih sprema niti dijeli sa nekom trećom strankom.
