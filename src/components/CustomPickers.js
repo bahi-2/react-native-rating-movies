@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Picker } from 'native-base';
 
+/** This class renders a drop-down menu for selecting a day of the week. */
 export class DayPicker extends React.Component {
 	render() {
 		return(
@@ -23,6 +24,8 @@ export class DayPicker extends React.Component {
 	}
 }
 
+
+/** This class renders a drop-down menu for selecting a cinema for which to display content. */
 export class CinemaPicker extends React.Component {
 	render() {
 		return(

@@ -1,46 +1,49 @@
 import React, {Component} from 'react';
-import { ProgressBarAndroid,View, Image, Linking, AsyncStorage } from 'react-native';
+import { ProgressBarAndroid, View, Image, AsyncStorage } from 'react-native';
 
-import { Container, Header, Content, 
-         Card, CardItem, Text, Body, 
-         Thumbnail, Left, Title, 
-         Spinner, Button, Icon } from "native-base";
+import { Container, Header, Content,
+         Body, Title } from "native-base";
 import cheerio from 'react-native-cheerio';
 
 import { getIMDBId, getIMDBRating } from 'Kinoslav/src/ratings.js';
 import { cinemaLinks } from 'Kinoslav/src/config/storage.js'
-import { ScheduleCardItem } from 'Kinoslav/src/components/ScheduleCardItem.js';
 import { CinemaPicker, DayPicker } from 'Kinoslav/src/components/CustomPickers.js';
 import { getCurrentDate, getDateForDay } from 'Kinoslav/src/components/helpers.js';
-// import { cachedRatings } from 'Kinoslav/src/storage/caching.js'
+import { CinemaCard } from "./src/components/CinemaCard";
+import { IMDB_BASE_URL } from "./src/config/storage";
+import LoadingScreen from "./src/screens/LoadingScreen";
+import MainScreen from "./src/screens/MainScreen";
 
+/** The bellow require calls fix a bug with es6 symbols. */
 // symbol polyfills
 global.Symbol = require('core-js/es6/symbol');
 require('core-js/fn/symbol/iterator');
-
 // collection fn polyfills
 require('core-js/fn/map');
 require('core-js/fn/set');
 require('core-js/fn/array/find');
 
-const CINEMA_BASE_URL = "https://www.blitz-cinestar.hr/";
-const IMDB_BASE_URL = "https://www.imdb.com/title/";
-
+/** Entry point of the application. This is where the magic happens. */
 export default class App extends Component {
 
+  /** Initial state of the app. Show the loading screen and load movies for Zagreb. */
+  INITIAL_STATE = {
+        isLoading: true,
+        selectedCinema: 'Cinestar Zagreb',
+        cinemaURL: cinemaLinks["CineStar Zagreb"],
+        day: 'Danas',
+        date: getCurrentDate()
+  };
+
+  /** Constructor which sets the initial state. */
   constructor(props){
     super(props);
 
     // initial state
-    this.state = { 
-      isLoading: true, 
-      selectedCinema: 'Cinestar Zagreb',
-      cinemaURL: cinemaLinks["CineStar Zagreb"],
-      day: 'Danas',
-      date: getCurrentDate()
-    };
+    this.state = this.INITIAL_STATE;
   }
 
+  /** Method which is called after the screen is successfully rendered. */
   componentDidMount() {
     // MAKNI OVO KAD POPRAVIŠ RATINGE
     setTimeout(()=>this.setState(this.state), 4000);
@@ -179,74 +182,16 @@ export default class App extends Component {
     });
   }
 
-  renderCard() {
-    return(
-      <Card dataArray={this.state.dataSource}
-            renderRow=
-              { (item) => this.renderCardRow(item) } 
-      />
-    )
-  }
-
-  renderCardRow(item) {
-    return(
-      <Content>
-        <CardItem bordered style={{backgroundColor: '#e5efff'}}>
-          <Left>
-            <Thumbnail source={{uri: item.image}} />
-            <Body>
-              <Text 
-                onPress={
-                  () => Linking.openURL(CINEMA_BASE_URL+item.cinestarLink)
-                }
-                style={{color: 'blue'}}> {item.titleHR}
-              </Text>
-              <Text note> {item.titleEN} </Text>
-              <Text note> Žanr: {item.genre} </Text>
-            </Body>
-          </Left>
-            <Icon type="FontAwesome" name="imdb" />
-          <Text>{item.imdbRating}</Text>
-        </CardItem>
-        <ScheduleCardItem item={item} />
-      </Content>
-    )
-  }
-
+  /** This method returns the elements that should be rendered on the screen. Before all items are loaded it
+   *  simply returns a loading splash screen. */
   render() {
-
+    /* Shows the splash screen with a progress bar while waiting for data. */
     if(this.state.isLoading){
-      // if(true){
-      return(
-        <View style={{flex: 1}}>
-          <Image style={{flex:1, resizeMode: 'stretch', width: null, height: null}} source = {require('Kinoslav/src/assets/splash.jpg')} />
-          <ProgressBarAndroid styleAttr='Horizontal' color="#2196F3" />
-        </View>
-      )
+      return(<LoadingScreen />);
     }
 
-    return (
-      <Container style={{backgroundColor: '#e3ecf9'}}>
-        <Header>
-          <Body>
-            <Title style={{color:'white', alignSelf: 'center'}}> Cinestar: {this.state.day} </Title>
-          </Body>
-        </Header>
-        <Content padder>
-
-          <CinemaPicker 
-            selectedValue={this.state.selectedCinema} 
-            onValueChange={this.onCinemaChange.bind(this)} />
-          
-          <DayPicker 
-            selectedValue={this.state.day}
-            onValueChange={this.onDayChange.bind(this)} />
-          
-          {this.renderCard()}
-
-        </Content>
-      </Container>
-    );
+    /* When the data is loaded render the app. */
+    return (<MainScreen />);
   
   }
 }

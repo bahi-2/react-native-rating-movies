@@ -17,3 +17,8 @@ export const cinemaLinks = {
   "CineStar Bihać (Bingo centar)   ": "https://www.blitz-cinestar-bh.ba/cinestar-bihac",
   "CineStar Tuzla (Bingo City Center)": "https://www.blitz-cinestar-bh.ba/cinestar-tuzla",
 }
+
+/** Root URL of the cinema */
+export const CINEMA_BASE_URL = "https://www.blitz-cinestar.hr/";
+/** Root URL of the rating website */
+export const IMDB_BASE_URL = "https://www.imdb.com/title/";
