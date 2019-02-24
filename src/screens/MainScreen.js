@@ -1,5 +1,5 @@
-import {Body, Container, Content, Header, Title} from "native-base";
-import {CinemaCard} from "../components/CinemaCard";
+import { Body, Container, Content, Header, Title } from "native-base";
+import { CinemaCard } from "../components/CinemaCard";
 import React from "react";
 
 export default class MainScreen extends React.Component {
@@ -10,7 +10,7 @@ export default class MainScreen extends React.Component {
             <Header>
               <Body>
                 <Title style={{color:'white', alignSelf: 'center'}}>
-                    Cinestar: {this.state.day}
+                  Cinestar: {this.state.day}
                 </Title>
               </Body>
             </Header>
