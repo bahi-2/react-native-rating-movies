@@ -12,12 +12,11 @@ const cheerio = require('cheerio');
 
 /** Dictionary containing links for each cinema. */
 const cinemaLinks = {
-    "CineStar Zagreb": "https://www.blitz-cinestar.hr/cinestar-zagreb",
     "CineStar Zagreb (Branimir centar)": "https://www.blitz-cinestar.hr/cinestar-zagreb",
     "CineStar Novi Zagreb (Avenue mall)": "https://www.blitz-cinestar.hr/cinestar-novi-zagreb",
     "CineStar Arena IMAX (Arena centar)": "https://www.blitz-cinestar.hr/cinestar-arena-imax",
     "CineStar Joker Split": "https://www.blitz-cinestar.hr/cinestar-joker-split",
-    "CineStar 4DX Mall of Split ": "https://www.blitz-cinestar.hr/cinestar-4dx-mall-of-split",
+    "CineStar 4DX Mall of Split": "https://www.blitz-cinestar.hr/cinestar-4dx-mall-of-split",
     "CineStar Rijeka 4DX (Tower Center)": "https://www.blitz-cinestar.hr/cinestar-rijeka-4dx",
     "CineStar Zadar (City Galleria)": "https://www.blitz-cinestar.hr/cinestar-zadar",
     "CineStar Šibenik (Dalmare centar)": "https://www.blitz-cinestar.hr/cinestar-sibenik",
@@ -50,19 +49,36 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const databaseRef = firebase.database().ref();
-
 const moviesRef = databaseRef.child("movieData");
+const scheduleRef = databaseRef.child("schedules");
 
 /*************************************************************/
 /************************** Script ***************************/
 /*************************************************************/
 
-updateFirebaseMovies().then(process.exit());
-
+// updateFirebaseMovies().then(() => process.exit());
+updateFirebaseSchedule().then(() => process.exit());
 
 /*************************************************************/
 /************************** Functions ************************/
 /*************************************************************/
+
+/** @returns dictionary where movies are mapped by day (0 today, 1 tomorrow, etc.) */
+async function getMovieSchedules() {
+    let moviesByDay = {};
+    for (day = 0; day < 7; day++) {
+        let moviesOnDay = [];
+        for (cinema in cinemaLinks) {
+            cinemaLink = cinemaLinks[cinema];
+            let movies = await getMovieItems(cinemaLink, day);
+            for (movie of movies) {
+                moviesOnDay.push(movie);
+            }
+        }
+        moviesByDay[day] = moviesOnDay;
+    }
+    return moviesByDay;
+}
 
 async function getAllMovies() {
     let allMovies = [];
@@ -96,6 +112,7 @@ async function getAllMovies() {
 
     return allMovies;
 }
+
 
 /** Auxilliary function which formats the date for for cinestar's url encoding. */
 function formatDate(date) {
@@ -186,17 +203,36 @@ async function getMovieItems(cinemaURL, day) {
         });
 }
 
-function updateFirebaseSchedule() {}
+
+async function updateFirebaseSchedule() {
+    //ref=cinestarURL children->movies
+    await scheduleRef.remove();
+    let moviesByDay = await getMovieSchedules();
+    let moviesSnap = await moviesRef.once("value");
+    let allMovies = moviesSnap.val();
+
+    for (day in moviesByDay) {
+        let movieItems = moviesByDay[day];
+        let dayRef = scheduleRef.child(day);
+        for (movieItem of movieItems) {
+            let cinemaName = movieItem.cinestarLink.split("/")[0];
+            let newRef = dayRef.child(cinemaName).child(movieItem.titleEN);
+            await newRef.set({
+                schedule: movieItem.schedule,
+                cinestarLink: movieItem.cinestarLink,
+                ...allMovies[movieItem.titleEN]
+            });
+        }
+    }
+    return true;
+}
 
 async function updateFirebaseMovies() {
     moviesRef.remove();
-    // get new data & SAVE
     let movieItems = await getAllMovies();
     for (movieItem of movieItems) {
-        console.log(movieItem);
-
         let newRef = moviesRef.child(movieItem.titleEN);
-        newRef.set({
+        await newRef.set({
             genre: movieItem.genre,
             image: movieItem.image,
             imdbLink: movieItem.imdbLink ? movieItem.imdbLink : '-',
@@ -207,6 +243,7 @@ async function updateFirebaseMovies() {
             runtime: movieItem.runtime,
         });
     }
+    return true;
 }
 
 
@@ -250,7 +287,7 @@ function scrapeIMDBId(movieItem, year = null) {
             let id = href.match(/tt[0-9]+/g)[0];
             return id;
         })
-        .catch(err=>{
+        .catch(err => {
             console.log(`Error while scraping IMDB id for ${movieItem.titleEN}: ${err}`);
             return null;
         });

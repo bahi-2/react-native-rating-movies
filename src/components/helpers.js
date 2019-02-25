@@ -3,10 +3,16 @@ export function getCurrentDate() {
 	return formatDate(new Date());
 }
 
-/** Returns the date in the format appropriate for cinestar's url encoding
-based on @param value which should contain a Croatian day String. 
-Given an inapropriate value it return's todays date. */
-export function getDateForDay(value: string) {
+export function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
+
+/** Returns the number of days needed to get to the selected one. */
+export function getDayOffset(value: string) {
 	let selectedDay;
 	switch (value) {
 	  case 'Ponedjeljak':
@@ -36,8 +42,8 @@ export function getDateForDay(value: string) {
 	}
 	let today = new Date().getDay();
 	let diff = selectedDay - today;
-	let offset = diff >= 0 ? diff : (7 + diff);
-	return formatDate(offsetDate(offset));
+	return offset = diff >= 0 ? diff : (7 + diff);
+	// return formatDate(offsetDate(offset));
 }
 
 /** Auxilliary function which calculates the date based on the offset of days. */
