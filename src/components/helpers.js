@@ -42,9 +42,9 @@ export function getDateForDay(value: string) {
 
 /** Auxilliary function which calculates the date based on the offset of days. */
 function offsetDate(offset) {
-	let today = new Date();
-	today.setDate(today.getDate()+offset);
-	return today;
+	let date = new Date();
+	date.setDate(date.getDate()+offset);
+	return date;
 }
 
 /** Auxilliary function which formats the date for for cinestar's url encoding. */

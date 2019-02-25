@@ -1,0 +1,16 @@
+{
+  "name": "serverside",
+  "version": "1.0.0",
+  "description": "Server-side script for updating the database.",
+  "main": "updateFirebase.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Blaz Bagic",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "firebase": "^5.8.4",
+    "node-fetch": "^2.3.0"
+  }
+}
