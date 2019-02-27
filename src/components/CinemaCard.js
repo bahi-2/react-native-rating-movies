@@ -23,7 +23,7 @@ export class CinemaCard extends React.Component {
                     }
                     style={{color: 'blue'}}> {item.titleHR}
                   </Text>
-                  <Text note> {item.titleEN} </Text>
+                  <Text note> {item.title} </Text>
                   <Text note> Žanr: {item.genre} </Text>
                 </Body>
               </Left>
