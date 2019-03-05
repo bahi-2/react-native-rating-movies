@@ -47,19 +47,11 @@ function offsetDate(offset) {
   return date;
 }
 
-// /** Auxilliary function which formats the date to ddmm format. */
-// function formatDate(date: Date) {
-//   let dateStr = date.toLocaleString('en-US', {
-//     timeZone: 'Europe/Zagreb'
-//   });
-//   let month = dateStr.match('(\\d+)/')[1].padStart(2, "0");
-//   let day = dateStr.match('/(\\d+)/')[1].padStart(2, "0");
-//   return day + month;
-// }
-
 /** Auxilliary function which formats the date to ddmm format.
 TODO: fix timezone */
 function formatDate(date: Date) {
+  date.setHours(date.getHours() + 1); // Timezone fix
+
   let dateStr = date.toISOString().slice(5,10);
   return dateStr.substring(3,5) + dateStr.substring(0, 2);
 }
