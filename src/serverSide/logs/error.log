@@ -1,0 +1,5 @@
+{ level: 'critical',
+  message: '\tReferenceError: title is not defined',
+  traceback:
+   'ReferenceError: title is not defined\n    at Object.updateSchedule (/home/pago/Documents/Programiranje/ReactNative/Kinoslav/src/serverSide/storage/firebase.js:62:54)\n    at process.internalTickCallback (internal/process/next_tick.js:77:7)',
+  timestamp: '2019-02-28T12:54:14.889Z' }

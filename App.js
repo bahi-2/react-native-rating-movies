@@ -1,14 +1,17 @@
-import React, {Component} from 'react';
-import { ProgressBarAndroid, View, Image, AsyncStorage } from 'react-native';
+import React, { Component } from 'react';
 
-import { Container, Header, Content,
-         Body, Title, Card, Text } from "native-base";
+import {
+    Container, Header, Content,
+    Body, Title, Card, Text
+} from "native-base";
 
-import { moviesRef, scheduleRef } from 'Kinoslav/src/config/firebase.js';
-import { cinemaLinks } from 'Kinoslav/src/config/storage.js'
-import { getCurrentDate, getDayOffset, isEmpty } from 'Kinoslav/src/components/helpers.js';
+import * as firebase from './src/config/firebase.js';
+import { cinemas } from './src/config/storage.js'
+import {
+    getCurrentDate, getDateForDay, getCurrentDay,
+    mapScheduleToMovies, isEmpty
+} from './src/util/helpers.js';
 import { CinemaCard } from "./src/components/CinemaCard";
-import { IMDB_BASE_URL } from "./src/config/storage";
 import LoadingScreen from "./src/screens/LoadingScreen";
 import { CinemaPicker, DayPicker } from './src/components/CustomPickers';
 
@@ -24,107 +27,121 @@ require('core-js/fn/array/find');
 /** Entry point of the application. This is where the magic happens. */
 export default class App extends Component {
 
-  /** Initial state of the app. Show the loading screen and load movies for Zagreb. */
-  INITIAL_STATE = {
+    /** Initial state of the app. Show the loading screen and load movies for Zagreb. */
+    INITIAL_STATE = {
         isLoading: true,
-        selectedCinema: 'CineStar Zagreb (Branimir centar)',
-        cinemaURL: cinemaLinks["CineStar Zagreb (Branimir centar)"],
-        day: 'Danas',
-        dayOffset: 0
-  };
+        cinema: cinemas[3], // todo
+        day: getCurrentDay(),
+        date: getCurrentDate()
+    };
 
-  /** Constructor which sets the initial state. */
-  constructor(props){
-    super(props);
+    /** Constructor which sets the initial state. */
+    constructor(props) {
+        super(props);
 
-    // initial state
-    this.state = this.INITIAL_STATE;
-  }
+        // initial state
+        this.state = this.INITIAL_STATE;
+        firebase.getAllMovies()
+            .then(movies =>
+                this.setState({
+                        ...this.state,
+                        movies: movies
+                    },
+                    () => {
+                        this.loadSchedule();
+                    })
+            );
+    }
 
-  /** Method which is called after the screen is successfully rendered. */
-  componentDidMount() {
-    let cinemaName = this.state.cinemaURL.split("/")[3];
-    let dayOffset = this.state.dayOffset;
-    console.log('searching for movies at: ' +cinemaName+", "+dayOffset+" days from today");
-    var filteredSchedule = scheduleRef.child(dayOffset+"/"+cinemaName);
-    filteredSchedule.once("value")
-      .then(snapshot => snapshot.val())
-      .then(movieItems => {
+    /** Loads the movie schedule based on cinema and day in this.state. */
+    loadSchedule() {
+        let date = this.state.date;
+        let cinema = this.state.cinema;
+        let fullDate = date.substring(0, 2) + '-' +
+            date.substring(2) + '-' +
+            new Date().getFullYear();
+        console.log(`Searching for movies playing in ${cinema} on ${fullDate}`);
+
+        firebase.getSchedule(cinema, date)
+            .then(movieSchedules => {
+                let movieItems = mapScheduleToMovies(movieSchedules, this.state.movies);
+                this.setState({
+                    ...this.state,
+                    dataSource: movieItems,
+                    isLoading: false
+                });
+            })
+            .catch(err => console.log(err));
+    }
+
+
+    onCinemaChange(value: string) {
         this.setState({
-          ...this.state,
-          dataSource: movieItems,
-          isLoading: false
-        });
-      });
-  }
-  
-  onCinemaChange(value: string) {
-    this.setState({
-        ...this.state,
-        selectedCinema: value,
-        cinemaURL: cinemaLinks[value],
-        isLoading: true
-      },
-      function () {
-        this.componentDidMount()
-      }
-    );
-  }
-
-  onDayChange(value: string) {
-    let newDate = getDayOffset(value);
-    this.setState({
-      ...this.state,
-      day: value,
-      dayOffset: newDate,
-      isLoading: true
-      },
-      function () { //callback which calls the update when ready
-        this.componentDidMount()
-    });
-  }
-
-  /** This method returns the elements that should be rendered on the screen. Before all items are loaded it
-   *  simply returns a loading splash screen. */
-  render() {
-    /* Shows the splash screen with a progress bar while waiting for data. */
-    if(this.state.isLoading){
-      return(<LoadingScreen />);
+                ...this.state,
+                cinema: value,
+                isLoading: true
+            },
+            () => {
+                this.loadSchedule();
+            }
+        );
     }
 
-    let movieList;
-    if (isEmpty(this.state.dataSource)) {
-        movieList = <Card><Text> Projekcije još nisu objavljene za {this.state.day}. </Text></Card>;
-    } else {
-        movieList = <CinemaCard dataSource={this.state.dataSource} />;
+    onDayChange(value: string) {
+        let newDate = getDateForDay(value);
+        this.setState({
+                ...this.state,
+                day: value,
+                date: newDate,
+                isLoading: true
+            },
+            () => { //callback which calls the update when ready
+                this.loadSchedule();
+            });
     }
 
-    /* When the data is loaded render the app. */
-    return(
-        <Container style={{backgroundColor: '#e3ecf9'}}>
+    /** This method returns the elements that should be rendered on the screen. Before all items are loaded it
+     *  simply returns a loading splash screen. */
+    render() {
+        /* Shows the splash screen with a progress bar while waiting for data. */
+        if (this.state.isLoading) {
+            return (<LoadingScreen/>);
+        }
 
-          <Header>
-            <Body>
-              <Title style={{color:'white', alignSelf: 'center'}}>
-                Cinestar: {this.state.day}
-              </Title>
-            </Body>
-          </Header>
+        let movieList;
+        if (isEmpty(this.state.dataSource)) {
+            let warning =  `Projekcije još nisu objavljene za ${this.state.day}.`;
+            movieList = <Card><Text> { warning } </Text></Card>;
+        } else {
+            movieList = <CinemaCard dataSource={this.state.dataSource}/>;
+        }
 
-          <Content padder>
-            <CinemaPicker
-              selectedValue={this.state.selectedCinema}
-              onValueChange={this.onCinemaChange.bind(this)} />
+        /* When the data is loaded render the app. */
+        return (
+            <Container style={{backgroundColor: '#e3ecf9'}}>
 
-            <DayPicker
-              selectedValue={this.state.day}
-              onValueChange={this.onDayChange.bind(this)} />
+                <Header>
+                    <Body>
+                    <Title style={{color: 'white', alignSelf: 'center'}}>
+                        Cinestar: {this.state.day}
+                    </Title>
+                    </Body>
+                </Header>
 
-            {movieList}
-          </Content>
+                <Content padder>
+                    <CinemaPicker
+                        selectedValue={this.state.cinema}
+                        onValueChange={this.onCinemaChange.bind(this)}/>
 
-        </Container>
-    );
-  
-  }
+                    <DayPicker
+                        selectedValue={this.state.day}
+                        onValueChange={this.onDayChange.bind(this)}/>
+
+                    {movieList}
+                </Content>
+
+            </Container>
+        );
+
+    }
 }

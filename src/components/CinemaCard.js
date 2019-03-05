@@ -4,7 +4,6 @@ import React from "react";
 import {Body, Card, CardItem, Content, Icon, Left, Text, Thumbnail} from "native-base";
 
 import { ScheduleCardItem } from 'Kinoslav/src/components/ScheduleCardItem.js';
-import { IMDB_BASE_URL, CINEMA_BASE_URL} from "../config/storage";
 
 /** This class is responsible for rendering a card containing items that represent movies playing in the cinema. */
 export class CinemaCard extends React.Component {
@@ -19,7 +18,7 @@ export class CinemaCard extends React.Component {
                 <Body>
                   <Text
                     onPress={
-                      () => Linking.openURL(CINEMA_BASE_URL+item.cinestarLink)
+                      () => Linking.openURL(item.cinestarLink)
                     }
                     style={{color: 'blue'}}> {item.titleHR}
                   </Text>
@@ -31,7 +30,7 @@ export class CinemaCard extends React.Component {
                     type="FontAwesome"
                     name="imdb"
                     onPress={
-                        () => Linking.openURL(IMDB_BASE_URL+item.imdbLink)
+                        () => Linking.openURL(item.imdbLink)
                     }
                 />
               <Text>{item.imdbRating}</Text>
