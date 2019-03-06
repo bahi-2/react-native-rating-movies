@@ -1,5 +1,24 @@
-{ level: 'critical',
-  message: '\tReferenceError: title is not defined',
-  traceback:
-   'ReferenceError: title is not defined\n    at Object.updateSchedule (/home/pago/Documents/Programiranje/ReactNative/Kinoslav/src/serverSide/storage/firebase.js:62:54)\n    at process.internalTickCallback (internal/process/next_tick.js:77:7)',
-  timestamp: '2019-02-28T12:54:14.889Z' }
+{ message:
+   "\tError while scraping IMDB id for Faust, from https://www.imdb.com/search/title?title=Faust&runtime=200,220&release_date=2018,2019:\n TypeError: Cannot read property 'match' of undefined",
+  level: '\u001b[35merror\u001b[39m',
+  timestamp: '2019-03-05T19:11:47.593Z' }
+{ message:
+   "\tError while scraping IMDB id for La forza del destino, from https://www.imdb.com/search/title?title=La+forza+del+destino&runtime=215,235&release_date=2018,2019:\n TypeError: Cannot read property 'match' of undefined",
+  level: '\u001b[35merror\u001b[39m',
+  timestamp: '2019-03-05T19:14:54.098Z' }
+{ message:
+   "\tError while scraping IMDB id for The Upside, from https://www.imdb.com/search/title?title=The+Upside&runtime=116,136&release_date=2018,2019:\n TypeError: Cannot read property 'match' of undefined",
+  level: '\u001b[35merror\u001b[39m',
+  timestamp: '2019-03-05T19:15:16.942Z' }
+{ message:
+   "\tError while scraping IMDB id for Romeo and Juliet, from https://www.imdb.com/search/title?title=Romeo+and+Juliet&runtime=155,175&release_date=2018,2019:\n TypeError: Cannot read property 'match' of undefined",
+  level: '\u001b[35merror\u001b[39m',
+  timestamp: '2019-03-05T19:17:18.533Z' }
+{ message:
+   "\tError while scraping IMDB id for Snow Queen: Mirror lands, from https://www.imdb.com/search/title?title=Snow+Queen:+Mirror+lands&runtime=77,97&release_date=2018,2019:\n TypeError: Cannot read property 'match' of undefined",
+  level: '\u001b[35merror\u001b[39m',
+  timestamp: '2019-03-05T19:17:23.743Z' }
+{ message:
+   "\tError while scraping IMDB id for Within the golden hour, from https://www.imdb.com/search/title?title=Within+the+golden+hour&runtime=155,175&release_date=2018,2019:\n TypeError: Cannot read property 'match' of undefined",
+  level: '\u001b[35merror\u001b[39m',
+  timestamp: '2019-03-05T19:17:47.622Z' }

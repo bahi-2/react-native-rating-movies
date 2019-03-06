@@ -1,346 +1,282 @@
 { message: '\tStarted firebase update job.',
-  level: 'info',
-  timestamp: '2019-02-28T12:53:51.093Z' }
-{ message: '\tSuccess fetching all cinestar links.',
-  level: 'info',
-  timestamp: '2019-02-28T12:53:51.410Z' }
-{ level: 'critical',
-  message: '\tReferenceError: title is not defined',
-  traceback:
-   'ReferenceError: title is not defined\n    at Object.updateSchedule (/home/pago/Documents/Programiranje/ReactNative/Kinoslav/src/serverSide/storage/firebase.js:62:54)\n    at process.internalTickCallback (internal/process/next_tick.js:77:7)',
-  timestamp: '2019-02-28T12:54:14.889Z' }
-{ message: '\tStarted firebase update job.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:54:30.740Z' }
+  timestamp: '2019-03-05T19:08:52.636Z' }
 { message: '\tSuccess fetching all cinestar links.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:54:30.998Z' }
-{ message: '\tStarted firebase update job.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:55:40.616Z' }
-{ message: '\tSuccess fetching all cinestar links.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:55:40.931Z' }
-{ message: '\tSuccessfully updated schedule for Replicas.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:56:03.361Z' }
+  timestamp: '2019-03-05T19:08:53.171Z' }
 { message: '\tSuccessfully updated schedule for 100 Things.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:56:11.621Z' }
+  timestamp: '2019-03-05T19:08:57.741Z' }
 { message: '\tSuccessfully updated schedule for Alita: Battle Angel.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:56:39.475Z' }
+  timestamp: '2019-03-05T19:09:21.426Z' }
 { message:
    '\tSuccessfully updated schedule for Asterix: The Secret of the Magic Potion.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:56:46.027Z' }
+  timestamp: '2019-03-05T19:09:27.435Z' }
 { message: '\tSuccessfully updated schedule for Bohemian Rhapsody.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:57:08.760Z' }
+  timestamp: '2019-03-05T19:09:37.876Z' }
 { message: '\tSuccessfully updated schedule for Vice.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:57:21.252Z' }
-{ message:
-   '\tSuccessfully updated schedule for Elliot the Littlest Reindeer.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:57:26.167Z' }
-{ message: '\tSuccessfully updated schedule for Escape Room.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:57:40.503Z' }
-{ message: '\tSuccessfully updated schedule for Faust.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:57:45.418Z' }
-{ message: '\tSuccessfully updated schedule for Cold Pursuit.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:58:00.983Z' }
-{ message: '\tSuccessfully updated schedule for Instant Family.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:58:04.464Z' }
-{ message:
-   '\tSuccessfully updated schedule for How to Train Your Dragon: The Hidden World.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:58:26.173Z' }
-{ message: '\tSuccessfully updated schedule for Captain Marvel.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:58:30.064Z' }
-{ message: '\tSuccessfully updated schedule for The Old Man & the Gun.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:58:30.885Z' }
-{ message: '\tSuccessfully updated schedule for Koja je ovo država.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:58:33.545Z' }
-{ message:
-   '\tSuccessfully updated schedule for The Lego Movie 2: The Second Part.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:58:56.278Z' }
-{ message: '\tSuccessfully updated schedule for Little Miss Dolittle.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:59:10.409Z' }
-{ message: '\tSuccessfully updated schedule for Mali.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:59:24.131Z' }
-{ message: '\tSuccessfully updated schedule for The Favourite.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:59:38.262Z' }
-{ message: '\tSuccessfully updated schedule for La forza del destino.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:59:42.153Z' }
-{ message: '\tSuccessfully updated schedule for The Mule.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T12:59:58.971Z' }
-{ message: '\tSuccessfully updated schedule for The Upside.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T13:00:08.783Z' }
-{ message: '\tSuccessfully updated schedule for Keepers.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T13:00:31.317Z' }
-{ message:
-   '\tSuccessfully updated schedule for Posljednji Srbin u Hrvatskoj.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T13:00:53.237Z' }
-{ message:
-   '\tSuccessfully updated schedule for Ralph Breaks the Internet.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T13:00:56.719Z' }
-{ message: '\tSuccessfully updated schedule for Romeo and Juliet.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T13:01:00.204Z' }
-{ message:
-   '\tSuccessfully updated schedule for Snow Queen: Mirror lands.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T13:01:10.444Z' }
-{ message: '\tSuccessfully updated schedule for The Trouble with You.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T13:01:22.483Z' }
-{ message: '\tSuccessfully updated schedule for In safe hands.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T13:01:23.352Z' }
-{ message:
-   '\tSuccessfully updated schedule for Within the golden hour.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T13:01:28.266Z' }
-{ message: '\tSuccessfully updated schedule for Green Book.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T13:01:51.414Z' }
-{ message: '\tSuccessfully updated schedule for A Star Is Born.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T13:01:58.993Z' }
+  timestamp: '2019-03-05T19:09:42.382Z' }
 { message: '\tStarted firebase update job.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:23:19.691Z' }
+  timestamp: '2019-03-05T19:10:01.491Z' }
 { message: '\tSuccess fetching all cinestar links.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:23:20.006Z' }
-{ message: '\tSuccessfully added Replicas to movie database.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:23:24.552Z' }
-{ message: '\tSuccessfully updated schedule for Replicas.',
-  level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:23:45.435Z' }
+  timestamp: '2019-03-05T19:10:01.813Z' }
 { message: '\tSuccessfully added 100 Things to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:23:49.532Z' }
+  timestamp: '2019-03-05T19:10:05.323Z' }
 { message: '\tSuccessfully updated schedule for 100 Things.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:23:56.699Z' }
+  timestamp: '2019-03-05T19:10:08.388Z' }
 { message:
    '\tSuccessfully added Alita: Battle Angel to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:24:00.797Z' }
+  timestamp: '2019-03-05T19:10:11.667Z' }
 { message: '\tSuccessfully updated schedule for Alita: Battle Angel.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:24:23.938Z' }
+  timestamp: '2019-03-05T19:10:35.223Z' }
 { message:
    '\tSuccessfully added Asterix: The Secret of the Magic Potion to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:24:28.854Z' }
+  timestamp: '2019-03-05T19:10:38.297Z' }
 { message:
    '\tSuccessfully updated schedule for Asterix: The Secret of the Magic Potion.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:24:34.997Z' }
+  timestamp: '2019-03-05T19:10:41.994Z' }
 { message: '\tSuccessfully added Bohemian Rhapsody to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:24:42.147Z' }
+  timestamp: '2019-03-05T19:10:45.474Z' }
 { message: '\tSuccessfully updated schedule for Bohemian Rhapsody.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:25:04.890Z' }
+  timestamp: '2019-03-05T19:10:53.260Z' }
 { message: '\tSuccessfully added Vice to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:25:09.814Z' }
+  timestamp: '2019-03-05T19:10:56.337Z' }
 { message: '\tSuccessfully updated schedule for Vice.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:25:21.897Z' }
+  timestamp: '2019-03-05T19:11:00.229Z' }
+{ message: '\tSuccessfully added Storm Boy to movie database.',
+  level: '\u001b[32minfo\u001b[39m',
+  timestamp: '2019-03-05T19:11:03.305Z' }
+{ message: '\tSuccessfully updated schedule for Storm Boy.',
+  level: '\u001b[32minfo\u001b[39m',
+  timestamp: '2019-03-05T19:11:24.413Z' }
 { message:
    '\tSuccessfully added Elliot the Littlest Reindeer to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:25:28.860Z' }
+  timestamp: '2019-03-05T19:11:27.897Z' }
 { message:
    '\tSuccessfully updated schedule for Elliot the Littlest Reindeer.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:25:32.083Z' }
+  timestamp: '2019-03-05T19:11:29.955Z' }
 { message: '\tSuccessfully added Escape Room to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:25:37.263Z' }
+  timestamp: '2019-03-05T19:11:33.020Z' }
 { message: '\tSuccessfully updated schedule for Escape Room.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:25:49.955Z' }
+  timestamp: '2019-03-05T19:11:44.698Z' }
+{ message:
+   "\tError while scraping IMDB id for Faust, from https://www.imdb.com/search/title?title=Faust&runtime=200,220&release_date=2018,2019:\n TypeError: Cannot read property 'match' of undefined",
+  level: '\u001b[35merror\u001b[39m',
+  timestamp: '2019-03-05T19:11:47.593Z' }
 { message: '\tSuccessfully added Faust to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:25:55.692Z' }
+  timestamp: '2019-03-05T19:11:47.978Z' }
 { message: '\tSuccessfully updated schedule for Faust.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:25:58.147Z' }
+  timestamp: '2019-03-05T19:11:50.231Z' }
 { message: '\tSuccessfully added Cold Pursuit to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:26:01.835Z' }
+  timestamp: '2019-03-05T19:11:53.716Z' }
 { message: '\tSuccessfully updated schedule for Cold Pursuit.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:26:16.375Z' }
+  timestamp: '2019-03-05T19:12:08.619Z' }
 { message: '\tSuccessfully added Instant Family to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:26:21.294Z' }
+  timestamp: '2019-03-05T19:12:11.542Z' }
 { message: '\tSuccessfully updated schedule for Instant Family.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:26:24.158Z' }
+  timestamp: '2019-03-05T19:12:14.818Z' }
 { message:
    '\tSuccessfully added How to Train Your Dragon: The Hidden World to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:26:31.123Z' }
+  timestamp: '2019-03-05T19:12:18.712Z' }
 { message:
    '\tSuccessfully updated schedule for How to Train Your Dragon: The Hidden World.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:26:55.084Z' }
+  timestamp: '2019-03-05T19:12:42.271Z' }
 { message: '\tSuccessfully added Captain Marvel to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:26:58.567Z' }
+  timestamp: '2019-03-05T19:12:46.371Z' }
 { message: '\tSuccessfully updated schedule for Captain Marvel.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:27:02.047Z' }
+  timestamp: '2019-03-05T19:13:09.518Z' }
 { message:
    '\tSuccessfully added The Old Man & the Gun to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:27:05.120Z' }
+  timestamp: '2019-03-05T19:13:12.797Z' }
 { message: '\tSuccessfully updated schedule for The Old Man & the Gun.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:27:05.325Z' }
+  timestamp: '2019-03-05T19:13:33.485Z' }
+{ message: '\tSuccessfully updated schedule for The Old Man & the Gun.',
+  level: '\u001b[32minfo\u001b[39m',
+  timestamp: '2019-03-05T19:13:34.511Z' }
 { message: '\tSuccessfully added Koja je ovo država to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:27:09.422Z' }
+  timestamp: '2019-03-05T19:13:38.161Z' }
 { message: '\tSuccessfully updated schedule for Koja je ovo država.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:27:13.927Z' }
+  timestamp: '2019-03-05T19:13:38.607Z' }
 { message:
    '\tSuccessfully added The Lego Movie 2: The Second Part to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:27:17.205Z' }
+  timestamp: '2019-03-05T19:13:46.597Z' }
 { message:
    '\tSuccessfully updated schedule for The Lego Movie 2: The Second Part.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:27:37.683Z' }
+  timestamp: '2019-03-05T19:14:13.634Z' }
 { message:
    '\tSuccessfully added Little Miss Dolittle to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:27:44.035Z' }
+  timestamp: '2019-03-05T19:14:19.370Z' }
 { message: '\tSuccessfully updated schedule for Little Miss Dolittle.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:27:52.839Z' }
+  timestamp: '2019-03-05T19:14:30.225Z' }
 { message: '\tSuccessfully added Mali to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:27:55.913Z' }
+  timestamp: '2019-03-05T19:14:34.936Z' }
 { message: '\tSuccessfully updated schedule for Mali.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:28:06.151Z' }
+  timestamp: '2019-03-05T19:14:41.490Z' }
 { message: '\tSuccessfully added The Favourite to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:28:09.635Z' }
+  timestamp: '2019-03-05T19:14:45.147Z' }
 { message: '\tSuccessfully updated schedule for The Favourite.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:28:22.126Z' }
+  timestamp: '2019-03-05T19:14:51.322Z' }
+{ message:
+   "\tError while scraping IMDB id for La forza del destino, from https://www.imdb.com/search/title?title=La+forza+del+destino&runtime=215,235&release_date=2018,2019:\n TypeError: Cannot read property 'match' of undefined",
+  level: '\u001b[35merror\u001b[39m',
+  timestamp: '2019-03-05T19:14:54.098Z' }
 { message:
    '\tSuccessfully added La forza del destino to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:28:25.200Z' }
+  timestamp: '2019-03-05T19:14:54.601Z' }
 { message: '\tSuccessfully updated schedule for La forza del destino.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:28:27.451Z' }
+  timestamp: '2019-03-05T19:14:56.852Z' }
 { message: '\tSuccessfully added The Mule to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:28:30.612Z' }
+  timestamp: '2019-03-05T19:15:00.540Z' }
 { message: '\tSuccessfully updated schedule for The Mule.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:28:48.955Z' }
+  timestamp: '2019-03-05T19:15:14.672Z' }
+{ message:
+   "\tError while scraping IMDB id for The Upside, from https://www.imdb.com/search/title?title=The+Upside&runtime=116,136&release_date=2018,2019:\n TypeError: Cannot read property 'match' of undefined",
+  level: '\u001b[35merror\u001b[39m',
+  timestamp: '2019-03-05T19:15:16.942Z' }
 { message: '\tSuccessfully added The Upside to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:28:52.085Z' }
+  timestamp: '2019-03-05T19:15:17.336Z' }
 { message: '\tSuccessfully updated schedule for The Upside.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:29:03.701Z' }
+  timestamp: '2019-03-05T19:15:23.323Z' }
 { message: '\tSuccessfully added Keepers to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:29:07.037Z' }
+  timestamp: '2019-03-05T19:15:27.167Z' }
 { message: '\tSuccessfully updated schedule for Keepers.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:29:31.355Z' }
+  timestamp: '2019-03-05T19:15:55.022Z' }
+{ message:
+   '\tSuccessfully added Maya the Bee: The Honey Games to movie database.',
+  level: '\u001b[32minfo\u001b[39m',
+  timestamp: '2019-03-05T19:15:59.118Z' }
+{ message:
+   '\tSuccessfully updated schedule for Maya the Bee: The Honey Games.',
+  level: '\u001b[32minfo\u001b[39m',
+  timestamp: '2019-03-05T19:15:59.322Z' }
 { message:
    '\tSuccessfully added Posljednji Srbin u Hrvatskoj to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:29:34.849Z' }
+  timestamp: '2019-03-05T19:16:02.773Z' }
 { message:
    '\tSuccessfully updated schedule for Posljednji Srbin u Hrvatskoj.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:29:59.207Z' }
+  timestamp: '2019-03-05T19:16:29.428Z' }
 { message:
    '\tSuccessfully added Ralph Breaks the Internet to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:30:08.799Z' }
+  timestamp: '2019-03-05T19:16:43.986Z' }
 { message:
    '\tSuccessfully updated schedule for Ralph Breaks the Internet.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:30:10.473Z' }
+  timestamp: '2019-03-05T19:16:44.790Z' }
+{ message: '\tSuccessfully added Replicas to movie database.',
+  level: '\u001b[32minfo\u001b[39m',
+  timestamp: '2019-03-05T19:16:47.822Z' }
+{ message: '\tSuccessfully updated schedule for Replicas.',
+  level: '\u001b[32minfo\u001b[39m',
+  timestamp: '2019-03-05T19:17:15.877Z' }
+{ message:
+   "\tError while scraping IMDB id for Romeo and Juliet, from https://www.imdb.com/search/title?title=Romeo+and+Juliet&runtime=155,175&release_date=2018,2019:\n TypeError: Cannot read property 'match' of undefined",
+  level: '\u001b[35merror\u001b[39m',
+  timestamp: '2019-03-05T19:17:18.533Z' }
 { message: '\tSuccessfully added Romeo and Juliet to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:30:14.975Z' }
+  timestamp: '2019-03-05T19:17:18.909Z' }
 { message: '\tSuccessfully updated schedule for Romeo and Juliet.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:30:17.019Z' }
+  timestamp: '2019-03-05T19:17:21.042Z' }
+{ message:
+   "\tError while scraping IMDB id for Snow Queen: Mirror lands, from https://www.imdb.com/search/title?title=Snow+Queen:+Mirror+lands&runtime=77,97&release_date=2018,2019:\n TypeError: Cannot read property 'match' of undefined",
+  level: '\u001b[35merror\u001b[39m',
+  timestamp: '2019-03-05T19:17:23.743Z' }
 { message:
    '\tSuccessfully added Snow Queen: Mirror lands to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:30:26.207Z' }
+  timestamp: '2019-03-05T19:17:24.085Z' }
 { message:
    '\tSuccessfully updated schedule for Snow Queen: Mirror lands.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:30:36.066Z' }
+  timestamp: '2019-03-05T19:17:30.463Z' }
 { message:
    '\tSuccessfully added The Trouble with You to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:30:39.757Z' }
+  timestamp: '2019-03-05T19:17:33.720Z' }
 { message: '\tSuccessfully updated schedule for The Trouble with You.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:30:53.270Z' }
+  timestamp: '2019-03-05T19:17:42.341Z' }
 { message: '\tSuccessfully added In safe hands to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:30:57.162Z' }
+  timestamp: '2019-03-05T19:17:46.234Z' }
 { message: '\tSuccessfully updated schedule for In safe hands.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:30:57.365Z' }
+  timestamp: '2019-03-05T19:17:46.437Z' }
+{ message:
+   "\tError while scraping IMDB id for Within the golden hour, from https://www.imdb.com/search/title?title=Within+the+golden+hour&runtime=155,175&release_date=2018,2019:\n TypeError: Cannot read property 'match' of undefined",
+  level: '\u001b[35merror\u001b[39m',
+  timestamp: '2019-03-05T19:17:47.622Z' }
 { message:
    '\tSuccessfully added Within the golden hour to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:31:01.875Z' }
+  timestamp: '2019-03-05T19:17:48.081Z' }
 { message:
    '\tSuccessfully updated schedule for Within the golden hour.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:31:04.123Z' }
+  timestamp: '2019-03-05T19:17:50.331Z' }
 { message: '\tSuccessfully added Green Book to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:31:09.654Z' }
+  timestamp: '2019-03-05T19:17:53.811Z' }
 { message: '\tSuccessfully updated schedule for Green Book.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:31:32.947Z' }
+  timestamp: '2019-03-05T19:18:19.410Z' }
 { message: '\tSuccessfully added A Star Is Born to movie database.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:31:36.505Z' }
+  timestamp: '2019-03-05T19:18:22.759Z' }
 { message: '\tSuccessfully updated schedule for A Star Is Born.',
   level: '\u001b[32minfo\u001b[39m',
-  timestamp: '2019-02-28T21:31:43.240Z' }
+  timestamp: '2019-03-05T19:18:25.351Z' }

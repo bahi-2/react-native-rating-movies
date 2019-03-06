@@ -67,6 +67,10 @@ function movieExists(title) {
         .then(snapshot => snapshot.child(title).exists());
 }
 
+function getAllMovies() {
+    return movieRef.once("value").then(snapshot => snapshot.val());
+}
+
 
 /*************************************************************/
 /************************** Exports **************************/
@@ -82,4 +86,5 @@ module.exports = {
     addMovieToFirebase: addMovieToFirebase,
     updateSchedule: updateSchedule,
     movieExists: movieExists,
+    getAllMovies: getAllMovies,
 }

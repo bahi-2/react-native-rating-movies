@@ -25,7 +25,7 @@ const loggingLevelColors = {
     warn: 'yellow',
     info: 'green',
     debug: 'blue',
-}
+};
 
 winston.addColors(loggingLevelColors);
 
@@ -50,4 +50,4 @@ const logger = winston.createLogger({
 
 module.exports = {
     logger: logger,
-}
+};

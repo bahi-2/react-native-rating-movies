@@ -32,7 +32,7 @@ function getRatingFromApi(name, year = null) {
         .then(response => response.json())
         .then(json => json.imdbRating)
         .catch((error) => {
-            logger.error('Error fetchin rating from OMDB: ' + error);
+            logger.error('Error fetching rating from OMDB: ' + error);
         });
 
     if (rating) return rating;
@@ -44,16 +44,15 @@ function getRatingFromApi(name, year = null) {
 }
 
 /** Uses IMDB title search to find the ID of the movie. */
-function scrapeId(movieItem) {
+function scrapeId(movieItem, year) {
     const IMDB_SEARCH_URL = "https://www.imdb.com/search/title?";
     const title = movieItem.title.trim().split(" ").join("+");
     const run1 = movieItem.runtime - 10;
     const run2 = parseInt(movieItem.runtime) + 10;
-    const FULL_URL = `${IMDB_SEARCH_URL}
-                    title=${title}
-                    &runtime=${run1},
-                             ${run2}
-                    &release_date=${movieItem.year}`;
+    const FULL_URL = `${IMDB_SEARCH_URL}` +
+                    `title=${title}` +
+                    `&runtime=${run1},${run2}` +
+                    `&release_date=${movieItem.year - 1},${movieItem.year}`;
 
     return fetch(encodeURI(FULL_URL))
         .then(response => response.text())
@@ -64,7 +63,7 @@ function scrapeId(movieItem) {
             return id;
         })
         .catch(err => {
-            logger.error(`Error while scraping IMDB id for ${movieItem.title}: ${err}`);
+            logger.error(`Error while scraping IMDB id for ${movieItem.title}, from ${FULL_URL}:\n ${err}`);
             return null;
         });
 }
